@@ -5,8 +5,7 @@ const Hero = () => {
     <section className="hero">
       <h1>Find Your Dream Job Today</h1>
       <h4>
-        Connecting Talent with Opportunities Across the Nation for Every Skill
-        Level
+       Empowering You to Land the Right Job with the Power of AI.
       </h4>
       <div className="box">
         Explore a vast array of job listings in diverse industries. Whether
