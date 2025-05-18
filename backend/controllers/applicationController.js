@@ -80,7 +80,7 @@ export const postApplication = catchAsyncErrors(async (req, res, next) => {
 
   // ✅ Send Resume, Job Description & Requirements to FastAPI for Scoring
   try {
-    const fastApiResponse = await axios.post("http://127.0.0.1:8000/score-resume", {
+    const fastApiResponse = await axios.post("https://ai-job-portal-uk6h.onrender.com/score-resume", {
       resume_url: jobSeekerInfo.resume.url,
       job_description: jobDetails.introduction,
       job_requirements: jobDetails.responsibilities, // Ensure this exists in Job schema
