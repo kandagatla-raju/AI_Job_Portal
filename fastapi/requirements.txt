@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+requests
+PyMuPDF
+pydantic
+scikit-learn
+torch
+transformers
