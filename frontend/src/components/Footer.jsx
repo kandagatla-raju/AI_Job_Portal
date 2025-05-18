@@ -21,7 +21,6 @@ const Footer = () => {
           <ul>
             <li>Hyderabad</li>
             <li>c8aimockinterviews@gmail.com</li>
-            <li>+91 9949370012</li>
             <li>+91 9014559314</li>
           </ul>
         </div>
@@ -81,7 +80,7 @@ const Footer = () => {
         </div>
       </footer>
       <div className="copyright">
-        &copy; CopyRight 2025. All Rights Reserved By MRCET_CSE_C8
+        &copy; CopyRight 2025. All Rights Reserved By c8AIHire
       </div>
       
     </>
