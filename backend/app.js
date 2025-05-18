@@ -10,45 +10,43 @@ import jobRouter from "./routes/jobRouter.js";
 import applicationRouter from "./routes/applicationRouter.js";
 import { newsLetterCron } from "./automation/newsLetterCron.js";
 
-
 const app = express();
 config({ path: "./config/config.env" });
 
-app.use(
-  cors({
-    origin: [process.env.FRONTEND_URL],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    //allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
-    credentials: true,
-    
-  })
-);
+// ✅ CORS config (Allow credentials and frontend origin)
+app.use(cors({
+  origin: process.env.FRONTEND_URL, // e.g., "https://ai-job-portal-0ytr.onrender.com"
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true,
+}));
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://ai-job-portal-0ytr.onrender.com");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-   next();
-});
+// ❌ REMOVE this manual header setting block, it's redundant & may conflict:
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "https://ai-job-portal-0ytr.onrender.com");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
+// ✅ Middleware setup
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(
-  fileUpload({
-    useTempFiles: true,
-    tempFileDir: "/tmp/",
-  })
-);
+app.use(fileUpload({
+  useTempFiles: true,
+  tempFileDir: "/tmp/",
+}));
 
+// ✅ Routes
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/job", jobRouter);
 app.use("/api/v1/application", applicationRouter);
 
-
-
-newsLetterCron()
+// ✅ Cron & DB
+newsLetterCron();
 connection();
+
+// ✅ Error handling
 app.use(errorMiddleware);
 
 export default app;
